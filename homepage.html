@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Homepage</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffffff, #000000);
+      height: 100vh;
+      margin: 0;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #ff5252;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff1744;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="welcomeMessage">Welcome back!</h1>
+  <button onclick="logout()">Logout</button>
+
+  <script>
+    const name = localStorage.getItem("loggedInName");
+    const isLoggedIn = localStorage.getItem("loggedIn");
+
+    if (!isLoggedIn || !name) {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("welcomeMessage").textContent = `Welcome back, ${name}!`;
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("loggedInName");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
